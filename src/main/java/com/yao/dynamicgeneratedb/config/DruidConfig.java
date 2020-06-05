@@ -48,40 +48,40 @@ public class DruidConfig {
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
-    @Value("${spring.datasource.initialSize}")
+    @Value("${spring.datasource.druid.initialSize}")
     private int initialSize;
 
-    @Value("${spring.datasource.minIdle}")
+    @Value("${spring.datasource.druid.minIdle}")
     private int minIdle;
 
-    @Value("${spring.datasource.maxActive}")
+    @Value("${spring.datasource.druid.maxActive}")
     private int maxActive;
 
-    @Value("${spring.datasource.maxWait}")
+    @Value("${spring.datasource.druid.maxWait}")
     private int maxWait;
 
-    @Value("${spring.datasource.timeBetweenEvictionRunsMillis}")
+    @Value("${spring.datasource.druid.timeBetweenEvictionRunsMillis}")
     private int timeBetweenEvictionRunsMillis;
 
-    @Value("${spring.datasource.minEvictableIdleTimeMillis}")
+    @Value("${spring.datasource.druid.minEvictableIdleTimeMillis}")
     private int minEvictableIdleTimeMillis;
 
-    @Value("${spring.datasource.validationQuery}")
+    @Value("${spring.datasource.druid.validationQuery}")
     private String validationQuery;
 
-    @Value("${spring.datasource.testWhileIdle}")
+    @Value("${spring.datasource.druid.testWhileIdle}")
     private boolean testWhileIdle;
 
-    @Value("${spring.datasource.testOnBorrow}")
+    @Value("${spring.datasource.druid.testOnBorrow}")
     private boolean testOnBorrow;
 
-    @Value("${spring.datasource.testOnReturn}")
+    @Value("${spring.datasource.druid.testOnReturn}")
     private boolean testOnReturn;
 
-    @Value("${spring.datasource.poolPreparedStatements}")
+    @Value("${spring.datasource.druid.poolPreparedStatements}")
     private boolean poolPreparedStatements;
 
-    @Value("${spring.datasource.filters}")
+    @Value("${spring.datasource.druid.filters}")
     private String filters;
     @Bean
     public ServletRegistrationBean druidServlet() {

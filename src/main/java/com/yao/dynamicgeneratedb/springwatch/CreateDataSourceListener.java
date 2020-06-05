@@ -1,11 +1,12 @@
-package com.yao.dynamicgeneratedb.service.impl;
+package com.yao.dynamicgeneratedb.springwatch;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.yao.dynamicgeneratedb.dynamicdatasource.DynamicDataSource;
 import com.yao.dynamicgeneratedb.model.DBModel;
- import com.yao.dynamicgeneratedb.service.DBService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.springframework.context.ApplicationListener;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 
@@ -13,18 +14,26 @@ import java.sql.SQLException;
  * @author yaochenglong
  * @version 1.0
  * @Description: TODO
- * @date 2020/6/4 15:33
+ * @date 2020/6/5 13:51
  */
 @Slf4j
-@Service
-public class DBServiceImpl implements DBService {
+@Component
+public class CreateDataSourceListener implements ApplicationListener<CreateDataSourceEvent> {
 
+    //@Async
     @Override
-    public void dynamicCreate(DBModel dbModel) {
+    public void onApplicationEvent(CreateDataSourceEvent event) {
+        DBModel dbModel = event.getDbModel();
+        //动态创建数据源
+        dynamicCreate(dbModel);
+        log.info("给租户{}创建了数据源",dbModel.getCustomerName());
+    }
+
+    private void dynamicCreate(DBModel dbModel) {
         Object o = DynamicDataSource.dataSourcesMap.get(dbModel.getId());
         if(o==null){
             DruidDataSource druidDataSource = new DruidDataSource();
-            druidDataSource.setUrl("jdbc:mysql://localhost:3306/"+dbModel.getDbName()+"123?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&useAffectedRows=true");
+            druidDataSource.setUrl("jdbc:mysql://localhost:3306/"+dbModel.getDbName()+"?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&useAffectedRows=true");
             druidDataSource.setUsername(dbModel.getUserName());
             druidDataSource.setPassword(dbModel.getPassword());
             druidDataSource.setMaxActive(dbModel.getMaxActive());

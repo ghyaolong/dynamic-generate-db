@@ -2,6 +2,7 @@ package com.yao.dynamicgeneratedb.model;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.beans.BeanUtils;
 
 /**
  * @author yaochenglong
@@ -11,13 +12,18 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class DBModel {
+public class DBModel extends DBPollModel{
+
+
+
+    private String domain;
+    private String customerNo;
+    private String customerName;
 
     private String id;
     private String url;
     private String userName;
     private String password;
     private String dbName;
-    private Integer initialSize = 20;
-    private Integer maxActive = 30;   //必须 initialSize <maxActive
+
 }
