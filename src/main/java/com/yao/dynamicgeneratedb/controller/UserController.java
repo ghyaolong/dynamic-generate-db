@@ -5,17 +5,14 @@ import com.yao.dynamicgeneratedb.model.DBModel;
 import com.yao.dynamicgeneratedb.model.User;
 import com.yao.dynamicgeneratedb.service.DBService;
 import com.yao.dynamicgeneratedb.service.UserService;
-import com.yao.dynamicgeneratedb.springwatch.CreateDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
-import java.util.Collection;
 
 /**
  * @author yaochenglong
@@ -34,9 +31,6 @@ public class UserController {
 
     @Autowired
     private DBService dbService;
-
-    @Autowired
-    private CreateDataSource createDataSource;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -67,10 +61,16 @@ public class UserController {
 
     @GetMapping("/user/syncEvent")
     public void testEvent(){
-        createDataSource.createDataSource("userA");
+        //createDataSource.createDataSource("userA");
         System.out.println("创建完了");
         log.info("测试数据源");
         User userById2 = userService.getUserById(1);
         log.info("返回数据结果：{}", userById2);
+    }
+
+    @GetMapping("/user/pub/{id}")
+    public String pubMsg(@PathVariable String id){
+        redisTemplate.convertAndSend("DruidDataSource","userA");
+        return "success";
     }
 }

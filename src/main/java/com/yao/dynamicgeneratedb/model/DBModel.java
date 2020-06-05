@@ -22,6 +22,8 @@ public class DBModel extends DBPollModel{
 
     private String id;
     private String url;
+    private String host;
+    private String port;
     private String userName;
     private String password;
     private String dbName;
