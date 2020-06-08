@@ -3,7 +3,6 @@ package com.yao.dynamicgeneratedb.dynamicdatasource;
 import com.yao.dynamicgeneratedb.component.SpringUtils;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
-import javax.sql.DataSource;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

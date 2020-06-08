@@ -1,5 +1,6 @@
 package com.yao.dynamicgeneratedb.service.impl;
 
+import com.yao.dynamicgeneratedb.annotation.DataSource;
 import com.yao.dynamicgeneratedb.dao.UserDao;
 import com.yao.dynamicgeneratedb.model.User;
 import com.yao.dynamicgeneratedb.service.UserService;
@@ -19,8 +20,14 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
 
+    @DataSource
     @Override
     public User getUserById(Integer id) {
+        return userDao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public User getUserById1(Integer id) {
         return userDao.selectByPrimaryKey(id);
     }
 }

@@ -9,8 +9,6 @@ import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 
-import java.util.concurrent.CountDownLatch;
-
 /**
  * @author yaochenglong
  * @version 1.0

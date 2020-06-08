@@ -1,5 +1,6 @@
 package com.yao.dynamicgeneratedb.controller;
 
+import com.yao.dynamicgeneratedb.annotation.DataSource;
 import com.yao.dynamicgeneratedb.dynamicdatasource.DynamicDataSource;
 import com.yao.dynamicgeneratedb.model.DBModel;
 import com.yao.dynamicgeneratedb.model.User;
@@ -73,4 +74,20 @@ public class UserController {
         redisTemplate.convertAndSend("DruidDataSource","userA");
         return "success";
     }
+
+    @GetMapping("/user/anno")
+    public String pubMsg1(){
+        User userById2 = userService.getUserById(1);
+        log.info("返回数据结果：{}", userById2);
+        return "success";
+    }
+
+    @GetMapping("/user/anno1")
+    public String pubMsg2(){
+        User userById2 = userService.getUserById1(1);
+        log.info("返回数据结果：{}", userById2);
+        return "success";
+    }
+
+
 }

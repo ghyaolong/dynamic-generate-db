@@ -11,4 +11,5 @@ import com.yao.dynamicgeneratedb.model.User;
 public interface UserService {
 
     User getUserById(Integer id);
+    User getUserById1(Integer id);
 }
